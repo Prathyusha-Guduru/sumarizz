@@ -168,9 +168,9 @@ def save_to_csv(pdf_path, text, csv_path):
     
     # Replace newlines with a special token for CSV storage
     # This prevents issues with CSV line breaks while preserving paragraph structure
-    text_for_csv = text.replace('\n', ' [NEWLINE] ')
+    text_for_csv = text.replace('\n', '')
     
-    with open(csv_path, 'a', newline='', encoding='utf-8') as file:
+    with open("OUTPUT/" + csv_path, 'a', newline='', encoding='utf-8') as file:
         # Use csv.writer with proper quoting and escaping
         writer = csv.writer(
             file, 
