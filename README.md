@@ -24,3 +24,10 @@ Fine tuned models which convert scientific papers to genz slang summaries
    - We fine tuned different models with different LoRa settings and picked the best performant one (in terms of highest ROGUE score improvement from base model)
   - After we picked a LoRa model, we fine tuned it further using DPO.
 
+6. Demo
+   - To run this project
+
+### How to use demo module
+  - The resultant finetuning models have been published to HuggingFace for ease of use
+  - The demo folder contains secret.toml (with aws_access_keys), video.mp4 (for video overlay), pdf_parser.py (to parse text from input pdfs), demo.ipynb (which has code to give the gradio link to try out the project)
+    
