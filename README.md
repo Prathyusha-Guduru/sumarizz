@@ -1,33 +1,141 @@
 # Sumarizz
-Fine tuned models which convert scientific papers to genz slang summaries
 
-### How to use this project
-  - The finalized fine-tuned models have been pushed to Hugging face hub for ease of use
-  - In the demo directory, there is demo.ipynb file, run it to get gradio link
+**Convert scientific papers into Gen Z–style summaries with ease.**
 
-### Modules to this project
+Sumarizz provides fine‑tuned language models that transform dense academic texts into punchy, slang‑infused recaps. Whether you’re a busy student, researcher, or science enthusiast, Sumarizz helps you grasp the highlights—fast.
 
-1. PDF parsing
-  - Plain pdfs cannot be accepted by the model, to extract text from them, we have a script, that takes the dir to the pdf files, parses them, if the text limit is more than 16k (which is the max size input for LED model), we remove sections in priority: 
-         - References, contributors, institute or conference details
-  - it write the details to a csv file
+---
 
-2. Dataset scraping
-   - To get dataset, we tried scraping multiple sites to achieve high quality data. We used aimodels.fyi/ and https://paperswithcode.com/sota to get latest ai paperies and their summaries. 
-   - With aimodels.fyi, we only got 138 papers, but when we were checking ROGUE scores against fine tuned model on this dataset, it did not improve much
-  - when we got more papers from paperswithcode, we got 503 rows dataset with 503 papers and ROGUE scores improved. but the quality of summaries were bad. 
+## 🚀 Features
 
-3. Preference list generation
-  - To fine tune with DPO, a preference dataset with winning and loosing responses are needed for each prompt/input
+* **High‑quality summaries**: Fine‑tuned on scientific articles to preserve key insights.
+* **Gen Z slang style**: Casual, engaging tone that resonates with younger audiences.
+* **Large‑document support**: Automatically parses PDFs up to 16,000 tokens, trimming non‑essential sections.
+* **Interactive demo**: Try it live with a Gradio web app.
+* **Hugging Face integration**: Pre‑trained models hosted for instant inference.
 
-5. Fine tuning explorations
-   - We fine tuned different models with different LoRa settings and picked the best performant one (in terms of highest ROGUE score improvement from base model)
-  - After we picked a LoRa model, we fine tuned it further using DPO.
+---
 
-6. Demo
-   - To run this project
+## 📦 Installation
 
-### How to use demo module
-  - The resultant finetuning models have been published to HuggingFace for ease of use
-  - The demo folder contains secret.toml (with aws_access_keys), video.mp4 (for video overlay), pdf_parser.py (to parse text from input pdfs), demo.ipynb (which has code to give the gradio link to try out the project)
-    
+1. **Clone the repo**:
+
+   ```bash
+   git clone https://github.com/your-org/Sumarizz.git
+   cd Sumarizz
+   ```
+
+2. **Create a virtual environment** (recommended):
+
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+3. **Install dependencies**:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+---
+
+## ⚙️ Project Structure
+
+```
+Sumarizz/
+├── demo/               # Gradio demo and helper scripts
+│   ├── demo.ipynb      # Launch Gradio interface
+│   ├── pdf_parser.py   # Extract and clean text from PDFs
+│   └── secret.toml     # AWS & other keys (gitignored)
+├── models/             # Configuration and LoRA adapters
+├── scripts/            # Data preprocessing and scraping scripts
+│   ├── parse_pdfs.py   # PDF → raw text → CSV
+│   ├── scrape_data.py   # Scrape paper metadata & summaries
+│   └── build_prefs.py  # Generate preference pairs for DPO
+├── training/           # Fine‑tuning & DPO pipelines
+├── requirements.txt
+└── README.md           # You are here!
+```
+
+---
+
+## 🛠️ Modules Overview
+
+### 1. PDF Parsing
+
+* **Purpose**: Cleanly extract text from academic PDFs.
+* **Workflow**:
+
+  1. Load PDFs from a directory.
+  2. Remove low‑priority sections (`References`, `Contributors`, `Affiliations`).
+  3. Split or trim content to fit LED’s 16k‑token limit.
+  4. Save structured output to CSV for downstream processing.
+
+### 2. Dataset Scraping
+
+* **Sources**:
+
+  * [aimodels.fyi](https://aimodels.fyi/) (\~140 papers)
+  * [PapersWithCode SOTA](https://paperswithcode.com/) (\~500 papers)
+* **Insights**:
+
+  * Smaller dataset (138 entries) yielded minimal ROUGE gains.
+  * Expanded dataset (503 entries) improved scores but required quality filtering.
+
+### 3. Preference‑Pair Generation
+
+* **Goal**: Create winning/losing summary pairs for DPO fine‑tuning.
+* **Process**: Compare outputs from different LoRA variants to label preferences.
+
+### 4. Fine‑Tuning Strategies
+
+* **LoRA Exploration**: Tested various LoRA configurations; selected best by ROUGE improvement.
+* **DPO Refinement**: Further polished the chosen LoRA model with Direct Preference Optimization.
+
+### 5. Demo
+
+* **Gradio App**: Quick web interface for uploading PDFs and receiving Gen Z summaries.
+* **Components**:
+
+  * `pdf_parser.py`: Preprocesses PDFs on the fly.
+  * `demo.ipynb`: Notebook to launch the Gradio server.
+
+---
+
+## 🎮 Quickstart Demo
+
+1. **Navigate** to the `demo/` folder:
+
+   ```bash
+   cd demo
+   ```
+2. **Install** any extra demo-specific requirements (if needed).
+3. **Run** the demo notebook or script:
+
+   ```bash
+   jupyter lab demo.ipynb
+   ```
+4. **Copy** the Gradio link and paste it in your browser to try Sumarizz.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please open issues or pull requests for:
+
+* Bug reports and feature requests.
+* Data quality improvements.
+* UI/UX enhancements.
+
+Before you submit:
+
+* Ensure code passes linting and tests.
+* Add or update documentation as needed.
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
+
