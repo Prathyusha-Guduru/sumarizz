@@ -1,4 +1,4 @@
-# sumarizz
+# Sumarizz
 Fine tuned models which convert scientific papers to genz slang summaries
 
 Project report: https://docs.google.com/document/d/1EbOwhHTK6D1P-QePqJXpO8Pf36J2ikfYrKhRYx9msqo/edit?tab=t.0
@@ -16,6 +16,15 @@ Project report: https://docs.google.com/document/d/1EbOwhHTK6D1P-QePqJXpO8Pf36J2
    - With aimodels.fyi, we only got 138 papers, but when we were checking ROGUE scores against fine tuned model on this dataset, it did not improve much
   - when we got more papers from paperswithcode, we got 503 rows dataset with 503 papers and ROGUE scores improved. but the quality of summaries were bad. 
 
-3. Fine tuning explorations
-   - We fine tuned different models with different LoRa settings
+3. Preference list generation
+  - To fine tune with DPO, a preference dataset with winning and loosing responses are needed for each prompt/input
 
+5. Fine tuning explorations
+   - We fine tuned different models with different LoRa settings and picked the best performant one (in terms of highest ROGUE score improvement from base model)
+  - After we picked a LoRa model, we fine tuned it further using DPO.
+
+### How to use this project
+  - The finalized fine-tuned models have been pushed to Hugging face hub for ease of use
+  - In the demo directory, there is demo.ipynb file, run it to get gradio link
+
+    
