@@ -1,5 +1,7 @@
 # Sumarizz
 
+Comprehensive project report can be found [here](https://docs.google.com/document/d/1J9SLABuK7BQJpB9im6jp0KQTjX2i5o1-t7ichxiPjig/edit?usp=sharing)
+
 **Convert scientific papers into Gen Z–style summaries with ease.**
 
 Sumarizz provides fine‑tuned language models that transform dense academic texts into punchy, slang‑infused recaps. Whether you’re a busy student, researcher, or science enthusiast, Sumarizz helps you grasp the highlights—fast.
