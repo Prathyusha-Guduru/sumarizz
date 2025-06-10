@@ -1,6 +1,7 @@
 # Sumarizz
 
 Comprehensive project report can be found [here](https://docs.google.com/document/d/1J9SLABuK7BQJpB9im6jp0KQTjX2i5o1-t7ichxiPjig/edit?usp=sharing)
+
 Demo can be found [here](https://youtu.be/I1HCtGaJ0xw)
 
 **Convert scientific papers into Gen Z–style summaries with ease.**
